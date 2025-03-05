@@ -82,7 +82,7 @@ const Home = () => {
         params.append('sortBy', sortBy);
       }
       
-      const response = await axios.get(`http://localhost:5000/api/posts?${params.toString()}`);
+      const response = await axios.get(`https://penster-backend.vercel.app/api/posts?${params.toString()}`);
       const newPosts = response.data.posts;
       
       if (page === 1) {
@@ -160,7 +160,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/posts/${postId}/bookmark`,
+        `https://penster-backend.vercel.app/api/posts/${postId}/bookmark`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }

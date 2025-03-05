@@ -35,7 +35,7 @@ const EditPost = () => {
         return;
       }
 
-      const response = await axios.get(`http://localhost:5000/api/posts/${id}`, {
+      const response = await axios.get(`https://penster-backend.vercel.app/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -65,7 +65,7 @@ const EditPost = () => {
       }
 
       await axios.put(
-        `http://localhost:5000/api/posts/${id}`,
+        `https://penster-backend.vercel.app/api/posts/${id}`,
         {
           ...formData,
           tags: formData.tags.split(',').map((tag) => tag.trim()),
@@ -89,7 +89,7 @@ const EditPost = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/posts/${id}`, {
+      await axios.delete(`https://penster-backend.vercel.app/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate('/profile');
@@ -125,7 +125,7 @@ const EditPost = () => {
       // Upload to server
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:5000/api/posts/upload',
+        'https://penster-backend.vercel.app/api/posts/upload',
         formData,
         {
           headers: {

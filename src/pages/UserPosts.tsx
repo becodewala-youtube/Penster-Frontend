@@ -44,11 +44,11 @@ const UserPosts = () => {
       setLoading(true);
       
       // Fetch user data
-      const userResponse = await axios.get(`http://localhost:5000/api/users/${userId}`);
+      const userResponse = await axios.get(`https://penster-frontend.vercel.app/api/users/${userId}`);
       setUser(userResponse.data);
       
       // Fetch user's posts
-      const postsResponse = await axios.get(`http://localhost:5000/api/posts/user/${userId}`);
+      const postsResponse = await axios.get(`https://penster-frontend.vercel.app/api/posts/user/${userId}`);
       setPosts(postsResponse.data);
       
       setLoading(false);

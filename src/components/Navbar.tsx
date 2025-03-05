@@ -45,7 +45,7 @@ const Navbar = () => {
     if (query.length >= 2) {
       setIsSearching(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/posts?search=${query}&limit=5`);
+        const response = await axios.get(`https://penster-backend.vercel.app/api/posts?search=${query}&limit=5`);
         setSearchResults(response.data.posts);
         setShowResults(true);
       } catch (error) {

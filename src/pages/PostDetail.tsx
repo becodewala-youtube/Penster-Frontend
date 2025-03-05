@@ -56,7 +56,7 @@ const PostDetail = () => {
 
   const fetchPost = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/posts/${id}`);
+      const response = await axios.get(`https://penster-backend.vercel.app/api/posts/${id}`);
       setPost(response.data);
       
       // Check if post is bookmarked by current user
@@ -80,7 +80,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/posts/${id}/like`,
+        `https://penster-backend.vercel.app/api/posts/${id}/like`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -101,7 +101,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/posts/${id}/bookmark`,
+        `https://penster-backend.vercel.app/api/posts/${id}/bookmark`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -160,7 +160,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/posts/${id}/comment`,
+        `https://penster-backend.vercel.app/api/posts/${id}/comment`,
         { text: comment },
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -182,7 +182,7 @@ const PostDetail = () => {
       try {
         const token = localStorage.getItem('token');
         await axios.delete(
-          `http://localhost:5000/api/posts/${id}/comment/${commentId}`,
+          `https://penster-backend.vercel.app/api/posts/${id}/comment/${commentId}`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }
@@ -207,7 +207,7 @@ const PostDetail = () => {
       try {
         const token = localStorage.getItem('token');
         await axios.delete(
-          `http://localhost:5000/api/posts/${id}`,
+          `https://penster-backend.vercel.app/api/posts/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }
