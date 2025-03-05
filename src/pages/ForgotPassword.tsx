@@ -16,7 +16,7 @@ const ForgotPassword = () => {
       setError('');
       setMessage('');
       
-      await axios.post('https://penster-backend.vercel.app/api/auth/forgot-password', { email });
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/forgot-password`, { email });
       
       setMessage('Password reset email sent. Please check your inbox.');
       setLoading(false);

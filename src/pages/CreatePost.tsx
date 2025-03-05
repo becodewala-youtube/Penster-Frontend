@@ -34,7 +34,7 @@ const CreatePost = () => {
       }
 
       const response = await axios.post(
-        'https://penster-backend.vercel.app/api/posts',
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts`,
         {
           ...formData,
           tags: formData.tags.split(',').map((tag) => tag.trim()),
@@ -86,7 +86,7 @@ const CreatePost = () => {
       // Upload to server
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'https://penster-backend.vercel.app/api/posts/upload',
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts/upload`,
         formData,
         {
           headers: {

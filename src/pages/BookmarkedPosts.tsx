@@ -40,7 +40,7 @@ const BookmarkedPosts = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://penster-backend.vercel.app/api/posts/bookmarks/list', {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/posts/bookmarks/list`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts(response.data);
@@ -55,7 +55,7 @@ const BookmarkedPosts = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `https://penster-backend.vercel.app/api/posts/${postId}/bookmark`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts/${postId}/bookmark`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

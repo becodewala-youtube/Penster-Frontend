@@ -35,7 +35,7 @@ const EditPost = () => {
         return;
       }
 
-      const response = await axios.get(`https://penster-backend.vercel.app/api/posts/${id}`, {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -65,7 +65,7 @@ const EditPost = () => {
       }
 
       await axios.put(
-        `https://penster-backend.vercel.app/api/posts/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}`,
         {
           ...formData,
           tags: formData.tags.split(',').map((tag) => tag.trim()),
@@ -89,7 +89,7 @@ const EditPost = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`https://penster-backend.vercel.app/api/posts/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       navigate('/profile');
@@ -125,7 +125,7 @@ const EditPost = () => {
       // Upload to server
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'https://penster-backend.vercel.app/api/posts/upload',
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts/upload`,
         formData,
         {
           headers: {

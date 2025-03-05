@@ -62,7 +62,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post('https://penster-backend.vercel.app/api/auth/login', {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, {
         email,
         password,
       });
@@ -84,7 +84,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post('https://penster-backend.vercel.app/api/auth/register', {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, {
         name,
         email,
         password,
