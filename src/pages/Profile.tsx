@@ -60,7 +60,7 @@ const Profile = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://penster-frontend.vercel.app/api/auth/profile', {
+      const response = await axios.get('https://penster-backend.vercel.app/api/auth/profile', {
         headers: { Authorization: `Bearer ${token}` },
       });
       
@@ -82,7 +82,7 @@ const Profile = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get(`https://penster-frontend.vercel.app/api/posts/user/${user?._id}`, {
+      const response = await axios.get(`https://penster-backend.vercel.app/api/posts/user/${user?._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setPosts(response.data);
@@ -97,7 +97,7 @@ const Profile = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://penster-frontend.vercel.app/api/posts/drafts/list', {
+      const response = await axios.get('https://penster-backend.vercel.app/api/posts/drafts/list', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setDrafts(response.data);
@@ -112,7 +112,7 @@ const Profile = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://penster-frontend.vercel.app/api/posts/bookmarks/list', {
+      const response = await axios.get('https://penster-backend.vercel.app/api/posts/bookmarks/list', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBookmarks(response.data);
@@ -128,7 +128,7 @@ const Profile = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        'https://penster-frontend.vercel.app/api/auth/profile',
+        'https://penster-backend.vercel.app/api/auth/profile',
         profileData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -148,7 +148,7 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`https://penster-frontend.vercel.app/api/posts/${postId}`, {
+      await axios.delete(`https://penster-backend.vercel.app/api/posts/${postId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       
@@ -167,7 +167,7 @@ const Profile = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `https://penster-frontend.vercel.app/api/posts/${postId}`,
+        `https://penster-backend.vercel.app/api/posts/${postId}`,
         { isDraft: false },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -183,14 +183,14 @@ const Profile = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `https://penster-frontend.vercel.app/api/posts/${postId}/bookmark`,
+        `https://penster-backend.vercel.app/api/posts/${postId}/bookmark`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
       // Refresh bookmarks
-      const response = await axios.get('https://penster-frontend.vercel.app/api/posts/bookmarks/list', {
+      const response = await axios.get('https://penster-backend.vercel.app/api/posts/bookmarks/list', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBookmarks(response.data);
@@ -215,7 +215,7 @@ const Profile = () => {
 
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'https://penster-frontend.vercel.app/api/posts/upload',
+        'https://penster-backend.vercel.app/api/posts/upload',
         formData,
         {
           headers: {
