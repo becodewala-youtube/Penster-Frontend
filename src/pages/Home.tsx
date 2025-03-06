@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Clock, ThumbsUp, MessageSquare, Bookmark, PenSquare, Filter, Search } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import Skeleton from '../components/Skeleton';
 
 interface Post {
   _id: string;
@@ -107,23 +108,6 @@ const Home = () => {
     }
   };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-    
-    // If search is cleared, navigate to home without search params
-    if (e.target.value === '' && location.pathname === '/' && location.search.includes('search=')) {
-      navigate('/');
-    }
-  };
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/?search=${encodeURIComponent(searchQuery)}`);
-    } else {
-      navigate('/');
-    }
-  };
 
   const categories = [
     'All',
@@ -193,9 +177,16 @@ const Home = () => {
 
   if (loading && page === 1) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3   mt-8'>
+  {[...Array(4)].map((_, index) => (
+    <div key={index}>
+      <Skeleton /> {index + 1}
+    </div>
+  ))}
+</div>
+
+     
+
     );
   }
 
@@ -222,27 +213,7 @@ const Home = () => {
         </button>
       </div>
 
-      {/* Mobile search bar */}
-      <div className="md:hidden mb-6">
-        <form onSubmit={handleSearchSubmit} className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
-          </div>
-          <input
-            type="text"
-            className="pl-10 block w-full rounded-md border border-gray-300 bg-gray-100 dark:bg-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:text-white sm:text-sm py-2"
-            placeholder="Search posts..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-          <button
-            type="submit"
-            className="absolute inset-y-0 right-0 px-3 flex items-center bg-blue-600 text-white rounded-r-md"
-          >
-            Search
-          </button>
-        </form>
-      </div>
+    
 
       {error && (
         <div className="text-center py-4 mb-6">
@@ -250,8 +221,8 @@ const Home = () => {
         </div>
       )}
 
-      <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
-        <div className="flex flex-wrap gap-2">
+      <div className="mb-8 flex  flex-row md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 ">
+        <div className="hidden md:flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -266,7 +237,20 @@ const Home = () => {
             </button>
           ))}
         </div>
-        
+        {/* Mobile: Select Dropdown */}
+  <div className="w-24 md:hidden ">
+    <select
+      value={category || 'All'}
+      onChange={(e) => handleCategoryChange(e.target.value)}
+      className="w-full bg-white dark:bg-gray-800 border dark:text-white border-gray-300 dark:border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+    >
+      {categories.map((cat) => (
+        <option key={cat} value={cat}>
+          {cat}
+        </option>
+      ))}
+    </select>
+  </div>
         <div className="flex items-center">
           <Filter className="w-5 h-5 mr-2 text-gray-500" />
           <select
