@@ -242,7 +242,7 @@ const Home = () => {
     <select
       value={category || 'All'}
       onChange={(e) => handleCategoryChange(e.target.value)}
-      className="w-full bg-white dark:bg-gray-800 border dark:text-white border-gray-300 dark:border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+      className="w-full bg-white dark:bg-gray-800 border dark:text-white border-gray-300 dark:border-gray-700 rounded-md shadow-sm  px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
     >
       {categories.map((cat) => (
         <option key={cat} value={cat}>

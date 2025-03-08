@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ThumbsUp, MessageSquare, Share2, Bookmark, Clock, Edit, Trash2 } from 'lucide-react';
+import { ThumbsUp, Share2, Bookmark, Clock, Edit, Trash2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '../context/AuthContext';
 
@@ -238,7 +238,7 @@ const PostDetail = () => {
   const isAuthor = user && post.author._id === user._id;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto md:px-4 py-8">
       <article className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
         {post.image && (
           <img
@@ -248,7 +248,7 @@ const PostDetail = () => {
           />
         )}
 
-        <div className="p-6">
+        <div className="md:p-6 p-4">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-4">
               <img
@@ -266,19 +266,19 @@ const PostDetail = () => {
                 </div>
               </div>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex md:space-x-2 ">
               {isAuthor && (
                 <>
                   <button
                     onClick={handleEditPost}
-                    className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-blue-600"
+                    className="pr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-blue-600"
                     title="Edit post"
                   >
                     <Edit className="w-5 h-5" />
                   </button>
                   <button
                     onClick={handleDeletePost}
-                    className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-red-600"
+                    className="pr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-red-600"
                     title="Delete post"
                   >
                     <Trash2 className="w-5 h-5" />
