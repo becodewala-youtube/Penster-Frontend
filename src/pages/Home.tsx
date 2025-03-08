@@ -180,7 +180,7 @@ const Home = () => {
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3   mt-8'>
   {[...Array(4)].map((_, index) => (
     <div key={index}>
-      <Skeleton /> {index + 1}
+      <Skeleton />
     </div>
   ))}
 </div>
