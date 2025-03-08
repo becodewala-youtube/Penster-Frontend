@@ -243,11 +243,11 @@ const Profile = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto md:px-4 py-8">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h1 className="md:text-2xl text-lg font-bold text-gray-900 dark:text-white">
               Profile Settings
             </h1>
             <button
@@ -263,7 +263,7 @@ const Profile = () => {
 
           <div className="flex border-b dark:border-gray-700 mb-6">
             <button
-              className={`py-2 px-4 font-medium ${
+              className={`py-2 md:px-4 font-medium ${
                 activeTab === 'profile'
                   ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
                   : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
@@ -611,7 +611,7 @@ const Profile = () => {
                 ) : (
                   <>
                     <div className="flex justify-between items-center mb-4">
-                      <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                      <h2 className="md:text-xl font-bold text-gray-900 dark:text-white">
                         My Bookmarked Posts
                       </h2>
                       <Link
@@ -653,16 +653,16 @@ const Profile = () => {
                             )}
                             <div className={`p-4 flex-1 ${!bookmark.image ? 'md:w-full' : 'md:w-3/4'}`}>
                               <div className="flex items-center justify-between mb-2">
-                                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+                                <h3 className="md:text-lg text-sm font-bold text-gray-900 dark:text-white">
                                   {bookmark.title}
                                 </h3>
-                                <div className="flex items-center">
+                                <div className="flex flex-col items-center">
                                   <img
                                     src={bookmark.author.avatar || 'https://via.placeholder.com/32'}
                                     alt={bookmark.author.name}
                                     className="w-6 h-6 rounded-full mr-2"
                                   />
-                                  <span className="text-sm text-gray-600 dark:text-gray-300">
+                                  <span className="md:text-sm text-xs text-gray-600 dark:text-gray-300">
                                     {bookmark.author.name}
                                   </span>
                                 </div>
