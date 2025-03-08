@@ -45,7 +45,7 @@ const Navbar = () => {
     if (query.length >= 2) {
       setIsSearching(true);
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/posts?search=${query}&limit=5`);
+        const response = await axios.get(`http://localhost:5000/api/posts?search=${query}&limit=5`);
         setSearchResults(response.data.posts);
         setShowResults(true);
       } catch (error) {
@@ -78,12 +78,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-10">
+    <nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           <Link to="/" className="text-2xl font-bold text-gray-800 dark:text-white flex items-center">
             <BookOpen className="w-6 h-6 mr-2" />
-            Penster
+            BlogHub
           </Link>
           
           <div className="hidden md:flex items-center flex-1 max-w-md mx-4 relative">
@@ -111,14 +111,15 @@ const Navbar = () => {
             {showResults && searchResults.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 rounded-md shadow-lg z-20 max-h-80 overflow-y-auto">
                 {searchResults.map((result) => (
-                  <button
+                  <div
                     key={result._id}
                     className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 border-b border-gray-200 dark:border-gray-700 cursor-pointer"
                     onClick={() => handleResultClick(result._id)}
+                    onMouseDown={(e) => e.preventDefault()} // Prevent onBlur from firing before click
                   >
                     <p className="font-medium text-gray-800 dark:text-white">{result.title}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">By {result.author.name}</p>
-                  </button>
+                  </div>
                 ))}
               </div>
             )}
@@ -222,14 +223,15 @@ const Navbar = () => {
         {showResults && searchResults.length > 0 && (
           <div className="absolute left-4 right-4 mt-1 bg-white dark:bg-gray-800 rounded-md shadow-lg z-20 max-h-60 overflow-y-auto">
             {searchResults.map((result) => (
-              <button
+              <div
                 key={result._id}
                 className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 border-b border-gray-200 dark:border-gray-700 cursor-pointer"
                 onClick={() => handleResultClick(result._id)}
+                onMouseDown={(e) => e.preventDefault()} // Prevent onBlur from firing before click
               >
                 <p className="font-medium text-gray-800 dark:text-white">{result.title}</p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">By {result.author.name}</p>
-              </button>
+              </div>
             ))}
           </div>
         )}
