@@ -23,7 +23,7 @@ const OAuthCallback = () => {
         const decoded = jwtDecode(token);
         
         // Fetch user data
-        const response = await fetch('http://localhost:5000/api/auth/profile', {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

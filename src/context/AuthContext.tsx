@@ -51,7 +51,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         
         if (storedUser && token) {
           // Verify token and get fresh user data
-          const response = await axios.get('http://localhost:5000/api/auth/profile', {
+          const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           
@@ -89,7 +89,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, {
         email,
         password,
       });
@@ -111,7 +111,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, {
         name,
         email,
         password,
