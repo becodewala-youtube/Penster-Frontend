@@ -18,6 +18,7 @@ interface AuthContextType {
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
   clearError: () => void;
+  setUser: (user: User | null) => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -28,6 +29,7 @@ export const AuthContext = createContext<AuthContextType>({
   register: async () => {},
   logout: () => {},
   clearError: () => {},
+  setUser: () => {},
 });
 
 interface AuthProviderProps {
@@ -42,16 +44,41 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   // Load user from localStorage on initial render
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
+    const loadUser = async () => {
+      try {
+        const storedUser = localStorage.getItem('user');
+        const token = localStorage.getItem('token');
+        
+        if (storedUser && token) {
+          // Verify token and get fresh user data
+          const response = await axios.get('http://localhost:5000/api/auth/profile', {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          
+          const userData = {
+            ...response.data,
+            token
+          };
+          
+          setUser(userData);
+          localStorage.setItem('user', JSON.stringify(userData));
+        }
+      } catch (error) {
+        console.error('Error loading user:', error);
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadUser();
   }, []);
 
   // Configure axios defaults
   useEffect(() => {
-    if (user) {
+    if (user?.token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
     } else {
       delete axios.defaults.headers.common['Authorization'];
@@ -62,7 +89,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, {
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
         email,
         password,
       });
@@ -72,11 +99,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(userData));
       localStorage.setItem('token', userData.token);
       setLoading(false);
-      navigate('/'); // Redirect to home page after successful login
+      navigate('/', { replace: true });
     } catch (err: any) {
       setError(err.response?.data?.message || 'Login failed');
       setLoading(false);
-      throw err; // Re-throw to handle in the component
+      throw err;
     }
   };
 
@@ -84,7 +111,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, {
+      const response = await axios.post('http://localhost:5000/api/auth/register', {
         name,
         email,
         password,
@@ -95,11 +122,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(userData));
       localStorage.setItem('token', userData.token);
       setLoading(false);
-      navigate('/'); // Redirect to home page after successful registration
+      navigate('/', { replace: true });
     } catch (err: any) {
       setError(err.response?.data?.message || 'Registration failed');
       setLoading(false);
-      throw err; // Re-throw to handle in the component
+      throw err;
     }
   };
 
@@ -107,7 +134,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setUser(null);
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate('/login', { replace: true });
   };
 
   const clearError = () => {
@@ -124,6 +151,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         register,
         logout,
         clearError,
+        setUser,
       }}
     >
       {children}

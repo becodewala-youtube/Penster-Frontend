@@ -20,10 +20,10 @@ const OAuthCallback = () => {
         }
 
         // Decode token to get user info
-        const decoded = jwtDecode(token) as any;
+        const decoded = jwtDecode(token);
         
         // Fetch user data
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile`, {
+        const response = await fetch('http://localhost:5000/api/auth/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -48,10 +48,10 @@ const OAuthCallback = () => {
         setUser(user);
         
         // Redirect to home page
-        navigate('/');
+        navigate('/', { replace: true });
       } catch (error) {
         console.error('OAuth callback error:', error);
-        navigate('/login');
+        navigate('/login', { replace: true });
       }
     };
 
