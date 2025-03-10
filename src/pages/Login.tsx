@@ -30,7 +30,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = `${import.meta.env.VITE_BACKEND_URL}/api/auth/google`;
+    window.location.href = 'http://localhost:5000/api/auth/google';
   };
 
   return (
@@ -48,7 +48,7 @@ const Login = () => {
           </p>
         </div>
         
-        <div className='line-through text-white'>
+        <div>
           <button
             onClick={handleGoogleLogin}
             className="w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700"
