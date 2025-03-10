@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
 
 const OAuthCallback = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { setUser } = useAuth() as any;
+  const { setUser } = useAuth();
 
   useEffect(() => {
     const processOAuthLogin = async () => {
@@ -23,17 +24,18 @@ const OAuthCallback = () => {
         const decoded = jwtDecode(token);
         
         // Fetch user data
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile`, {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         
-        if (!response.ok) {
+        /* if (!response.ok) {
           throw new Error('Failed to fetch user data');
-        }
+        } */
         
-        const userData = await response.json();
+        
+        const userData = await response.data;
         
         // Save user data and token
         const user = {
@@ -51,7 +53,7 @@ const OAuthCallback = () => {
         navigate('/', { replace: true });
       } catch (error) {
         console.error('OAuth callback error:', error);
-        navigate('/login', { replace: true });
+        navigate('/login?error=auth-failed', { replace: true });
       }
     };
 
