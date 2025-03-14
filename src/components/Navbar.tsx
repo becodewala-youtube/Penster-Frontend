@@ -83,7 +83,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="text-2xl font-bold text-gray-800 dark:text-white flex items-center">
             <BookOpen className="w-6 h-6 mr-2" />
-            BlogHub
+            Penster
           </Link>
           
           <div className="hidden md:flex items-center flex-1 max-w-md mx-4 relative">
