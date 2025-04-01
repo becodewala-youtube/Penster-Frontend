@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Clock, ThumbsUp, MessageSquare, Bookmark, PenSquare, Filter, Search } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import Skeleton from '../components/Skeleton';
 
 interface Post {
   _id: string;
@@ -191,9 +192,14 @@ const Home = () => {
 
   if (loading && page === 1) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3   mt-8'>
+      {[...Array(4)].map((_, index) => (
+        <div key={index}>
+          <Skeleton />
+        </div>
+      ))}
+    </div>
+    
     );
   }
 
