@@ -78,7 +78,7 @@ const Home = () => {
         params.append('sortBy', sortBy);
       }
       
-      const response = await axios.get(`${import.meta.env.BACKEND_URL}/api/posts?${params.toString()}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/posts?${params.toString()}`);
       const newPosts = response.data.posts;
       
       if (page === 1) {
@@ -155,7 +155,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `${import.meta.env.BACKEND_URL}/api/posts/${postId}/bookmark`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/posts/${postId}/bookmark`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -269,7 +269,7 @@ const Home = () => {
           <select
             value={sortBy}
             onChange={handleSortChange}
-            className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm py-1 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="bg-white dark:bg-gray-800 border border-gray-300 dark:text-white dark:border-gray-700 rounded-md shadow-sm py-1 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           >
             {sortOptions.map((option) => (
               <option key={option.value} value={option.value}>
