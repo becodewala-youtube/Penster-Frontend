@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
 
 const OAuthCallback = () => {
@@ -20,9 +19,8 @@ const OAuthCallback = () => {
           throw new Error('No token found');
         }
 
-        // Decode token to get user info
-        const decoded = jwtDecode(token);
-        
+      
+                
         // Fetch user data
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/auth/profile`, {
           headers: {

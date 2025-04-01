@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import CreatePost from './pages/CreatePost';
 import PostDetail from './pages/PostDetail';
 import Profile from './pages/Profile';
+import UserProfile from './pages/UserProfile';
 import EditPost from './pages/EditPost';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/reset-password/:token" element={<ResetPassword />} />
                 <Route path="/oauth-callback" element={<OAuthCallback />} />
                 <Route path="/posts/:id" element={<PostDetail />} />
+                <Route path="/user/:userId" element={<UserProfile />} />
                 <Route path="/user/:userId/posts" element={<UserPosts />} />
                 
                 {/* Protected Routes */}

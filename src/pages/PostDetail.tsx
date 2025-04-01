@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ThumbsUp, Share2, Bookmark, Clock, Edit, Trash2 } from 'lucide-react';
+import { ThumbsUp, MessageSquare, Share2, Bookmark, Clock, Edit, Trash2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '../context/AuthContext';
-import Skeleton from '../components/Skeleton';
 
 interface Comment {
   _id: string;
@@ -57,7 +56,7 @@ const PostDetail = () => {
 
   const fetchPost = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}`);
+      const response = await axios.get(`http://localhost:5000/api/posts/${id}`);
       setPost(response.data);
       
       // Check if post is bookmarked by current user
@@ -81,7 +80,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}/like`,
+        `http://localhost:5000/api/posts/${id}/like`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -102,7 +101,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}/bookmark`,
+        `http://localhost:5000/api/posts/${id}/bookmark`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -161,7 +160,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}/comment`,
+        `http://localhost:5000/api/posts/${id}/comment`,
         { text: comment },
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -183,7 +182,7 @@ const PostDetail = () => {
       try {
         const token = localStorage.getItem('token');
         await axios.delete(
-          `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}/comment/${commentId}`,
+          `http://localhost:5000/api/posts/${id}/comment/${commentId}`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }
@@ -208,7 +207,7 @@ const PostDetail = () => {
       try {
         const token = localStorage.getItem('token');
         await axios.delete(
-          `${import.meta.env.VITE_BACKEND_URL}/api/posts/${id}`,
+          `http://localhost:5000/api/posts/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }
@@ -222,7 +221,9 @@ const PostDetail = () => {
 
   if (loading) {
     return (
-      <Skeleton/>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
     );
   }
 
@@ -237,7 +238,7 @@ const PostDetail = () => {
   const isAuthor = user && post.author._id === user._id;
 
   return (
-    <div className="max-w-4xl mx-auto md:px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-8">
       <article className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
         {post.image && (
           <img
@@ -247,7 +248,7 @@ const PostDetail = () => {
           />
         )}
 
-        <div className="md:p-6 p-4">
+        <div className="p-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-4">
               <img
@@ -265,19 +266,19 @@ const PostDetail = () => {
                 </div>
               </div>
             </div>
-            <div className="flex md:space-x-2 ">
+            <div className="flex space-x-2">
               {isAuthor && (
                 <>
                   <button
                     onClick={handleEditPost}
-                    className="pr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-blue-600"
+                    className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-blue-600"
                     title="Edit post"
                   >
                     <Edit className="w-5 h-5" />
                   </button>
                   <button
                     onClick={handleDeletePost}
-                    className="pr-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-red-600"
+                    className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-red-600"
                     title="Delete post"
                   >
                     <Trash2 className="w-5 h-5" />
@@ -456,3 +457,4 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
+
