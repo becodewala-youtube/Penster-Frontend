@@ -47,9 +47,9 @@ const UserProfile = () => {
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
       const [userResponse, followersResponse, followingResponse] = await Promise.all([
-        axios.get(`http://localhost:5000/api/users/${userId}`, { headers }),
-        axios.get(`http://localhost:5000/api/users/${userId}/followers`, { headers }),
-        axios.get(`http://localhost:5000/api/users/${userId}/following`, { headers })
+        axios.get(`${import.meta.env.BACKEND_URL}/api/users/${userId}`, { headers }),
+        axios.get(`${import.meta.env.BACKEND_URL}/api/users/${userId}/followers`, { headers }),
+        axios.get(`${import.meta.env.BACKEND_URL}/api/users/${userId}/following`, { headers })
       ]);
 
       setUser(userResponse.data);
@@ -81,7 +81,7 @@ const UserProfile = () => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `http://localhost:5000/api/users/${userId}/follow`,
+        `${import.meta.env.BACKEND_URL}/api/users/${userId}/follow`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }

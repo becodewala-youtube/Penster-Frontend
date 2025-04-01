@@ -78,7 +78,7 @@ const Home = () => {
         params.append('sortBy', sortBy);
       }
       
-      const response = await axios.get(`http://localhost:5000/api/posts?${params.toString()}`);
+      const response = await axios.get(`${import.meta.env.BACKEND_URL}/api/posts?${params.toString()}`);
       const newPosts = response.data.posts;
       
       if (page === 1) {
@@ -155,7 +155,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/posts/${postId}/bookmark`,
+        `${import.meta.env.BACKEND_URL}/api/posts/${postId}/bookmark`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }

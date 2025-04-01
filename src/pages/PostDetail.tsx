@@ -56,7 +56,7 @@ const PostDetail = () => {
 
   const fetchPost = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/posts/${id}`);
+      const response = await axios.get(`${import.meta.env.BACKEND_URL}/api/posts/${id}`);
       setPost(response.data);
       
       // Check if post is bookmarked by current user
@@ -80,7 +80,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/posts/${id}/like`,
+        `${import.meta.env.BACKEND_URL}/api/posts/${id}/like`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -101,7 +101,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/posts/${id}/bookmark`,
+        `${import.meta.env.BACKEND_URL}/api/posts/${id}/bookmark`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -160,7 +160,7 @@ const PostDetail = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/posts/${id}/comment`,
+        `${import.meta.env.BACKEND_URL}/api/posts/${id}/comment`,
         { text: comment },
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -182,7 +182,7 @@ const PostDetail = () => {
       try {
         const token = localStorage.getItem('token');
         await axios.delete(
-          `http://localhost:5000/api/posts/${id}/comment/${commentId}`,
+          `${import.meta.env.BACKEND_URL}/api/posts/${id}/comment/${commentId}`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }
@@ -207,7 +207,7 @@ const PostDetail = () => {
       try {
         const token = localStorage.getItem('token');
         await axios.delete(
-          `http://localhost:5000/api/posts/${id}`,
+          `${import.meta.env.BACKEND_URL}/api/posts/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` }
           }
