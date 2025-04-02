@@ -226,7 +226,7 @@ const Home = () => {
         </button>
       </div>
 
-      <div className="md:hidden mb-6">
+      {/* <div className="md:hidden mb-6">
         <form onSubmit={handleSearchSubmit} className="relative">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
@@ -245,7 +245,7 @@ const Home = () => {
             Search
           </button>
         </form>
-      </div>
+      </div> */}
 
       {error && (
         <div className="text-center py-4 mb-6">
@@ -253,8 +253,8 @@ const Home = () => {
         </div>
       )}
 
-      <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
-        <div className="flex flex-wrap gap-2">
+      <div className="mb-8 flex  flex-row md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 ">
+      <div className="hidden md:flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -269,6 +269,20 @@ const Home = () => {
             </button>
           ))}
         </div>
+         {/* Mobile: Select Dropdown */}
+  <div className="w-24 md:hidden ">
+    <select
+      value={category || 'All'}
+      onChange={(e) => handleCategoryChange(e.target.value)}
+      className="w-full bg-white dark:bg-gray-800 border dark:text-white border-gray-300 dark:border-gray-700 rounded-md shadow-sm  px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+    >
+      {categories.map((cat) => (
+        <option key={cat} value={cat}>
+          {cat}
+        </option>
+      ))}
+    </select>
+  </div>
         
         <div className="flex items-center">
           <Filter className="w-5 h-5 mr-2 text-gray-500" />
