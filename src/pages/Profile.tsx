@@ -332,9 +332,9 @@ const Profile = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-6xl mx-auto md:px-4 py-8">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-        <div className="p-6">
+        <div className="p-4 md:p-6">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
               Profile Settings
@@ -350,58 +350,62 @@ const Profile = () => {
             </button>
           </div>
 
-          <div className="flex border-b dark:border-gray-700 mb-6">
-            <button
-              className={`py-2 px-4 font-medium ${
-                activeTab === 'profile'
-                  ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
-                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-              }`}
-              onClick={() => setActiveTab('profile')}
-            >
-              Profile
-            </button>
-            <button
-              className={`py-2 px-4 font-medium ${
-                activeTab === 'posts'
-                  ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
-                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-              }`}
-              onClick={() => setActiveTab('posts')}
-            >
-              My Posts
-            </button>
-            <button
-              className={`py-2 px-4 font-medium ${
-                activeTab === 'drafts'
-                  ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
-                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-              }`}
-              onClick={() => setActiveTab('drafts')}
-            >
-              Drafts
-            </button>
-            <button
-              className={`py-2 px-4 font-medium ${
-                activeTab === 'bookmarks'
-                  ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
-                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-              }`}
-              onClick={() => setActiveTab('bookmarks')}
-            >
-              Bookmarks
-            </button>
-            <button
-              className={`py-2 px-4 font-medium ${
-                activeTab === 'connections'
-                  ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
-                  : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
-              }`}
-              onClick={() => setActiveTab('connections')}
-            >
-              Connections
-            </button>
-          </div>
+          
+          <div className=" whitespace-nowrap border-b dark:border-gray-700 mb-6 text-xs md:text-sm">
+  <div className="flex md:space-x-4 -space-x-5">
+    <button
+      className={`md:py-2 md:px-4 pr-4 font-medium ${
+        activeTab === 'profile'
+          ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
+          : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+      }`}
+      onClick={() => setActiveTab('profile')}
+    >
+      Profile
+    </button>
+    <button
+      className={`py-2 px-4 font-medium ${
+        activeTab === 'posts'
+          ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
+          : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+      }`}
+      onClick={() => setActiveTab('posts')}
+    >
+      My Posts
+    </button>
+    <button
+      className={`py-2 px-4 font-medium ${
+        activeTab === 'drafts'
+          ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
+          : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+      }`}
+      onClick={() => setActiveTab('drafts')}
+    >
+      Drafts
+    </button>
+    <button
+      className={`py-2 px-4 font-medium ${
+        activeTab === 'bookmarks'
+          ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
+          : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+      }`}
+      onClick={() => setActiveTab('bookmarks')}
+    >
+      Bookmarks
+    </button>
+    <button
+      className={`py-2 px-4 font-medium ${
+        activeTab === 'connections'
+          ? 'text-blue-600 border-b-2 border-blue-600 dark:text-blue-400 dark:border-blue-400'
+          : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'
+      }`}
+      onClick={() => setActiveTab('connections')}
+    >
+      Connections
+    </button>
+  </div>
+</div>
+
 
           {error && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
@@ -631,7 +635,7 @@ const Profile = () => {
           {activeTab === 'posts' && (
             <div>
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+                <h2 className="md:text-xl font-bold text-gray-900 dark:text-white">
                   My Published Posts
                 </h2>
                 <Link
@@ -803,99 +807,107 @@ const Profile = () => {
             </div>
           )}
 
-          {activeTab === 'bookmarks' && (
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                  My Bookmarked Posts
-                </h2>
-                <Link
-                  to="/bookmarks"
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  <Bookmark className="w-4 h-4 mr-2" />
-                  View All
-                </Link>
-              </div>
-
-              {bookmarks.length === 0 ? (
-                <div className="text-center py-8 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    You haven't bookmarked any posts yet.
-                  </p>
-                  <Link
-                    to="/"
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                  >
-                    Browse Posts
-                  </Link>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  {bookmarks.map((bookmark) => (
-                    <div
-                      key={bookmark._id}
-                      className="flex flex-col md:flex-row bg-white dark:bg-gray-700 rounded-lg shadow overflow-hidden"
-                    >
-                      {bookmark.image && (
-                        <div className="md:w-1/4">
-                          <img
-                            src={bookmark.image}
-                            alt={bookmark.title}
-                            className="w-full h-40 object-cover"
-                          />
-                        </div>
-                      )}
-                      <div className={`p-4 flex-1 ${!bookmark.image ? 'md:w-full' : 'md:w-3/4'}`}>
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                            {bookmark.title}
-                          </h3>
-                          <div className="flex items-center">
-                            <img
-                              src={bookmark.author.avatar || 'https://via.placeholder.com/32'}
-                              alt={bookmark.author.name}
-                              className="w-6 h-6 rounded-full mr-2"
-                            />
-                            <span className="text-sm text-gray-600 dark:text-gray-300">
-                              {bookmark.author.name}
-                            </span>
-                          </div>
-                        </div>
-                        <p className="text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">
-                          {bookmark.content.replace(/<[^>]*>?/gm, '')}
-                        </p>
-                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
-                          <Clock className="w-4 h-4 mr-1" />
-                          {new Date(bookmark.createdAt).toLocaleDateString()}
-                          <span className="mx-2">•</span>
-                          <span>{bookmark.likes.length} likes</span>
-                          <span className="mx-2">•</span>
-                          <span>{bookmark.comments.length} comments</span>
-                        </div>
-                        <div className="flex space-x-2">
-                          <Link
-                            to={`/posts/${bookmark._id}`}
-                            className="flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                          >
-                            <Eye className="w-4 h-4 mr-1" />
-                            View
-                          </Link>
-                          <button
-                            onClick={() => handleBookmark(bookmark._id)}
-                            className="flex items-center text-yellow-600 hover:text-yellow-700 dark:text-yellow-400 dark:hover:text-yellow-300"
-                          >
-                            <Bookmark className="w-4 h-4 mr-1" />
-                            Remove Bookmark
-                          </button>
-                        </div>
-                      </div>
+{activeTab === 'bookmarks' && (
+              <>
+                {loading ? (
+                  <div className="flex justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex justify-between items-center mb-4">
+                      <h2 className="md:text-xl font-bold text-gray-900 dark:text-white">
+                        My Bookmarked Posts
+                      </h2>
+                      <Link
+                        to="/bookmarks"
+                        className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      >
+                        <Bookmark className="w-4 h-4 mr-2" />
+                        View All
+                      </Link>
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+
+                    {bookmarks.length === 0 ? (
+                      <div className="text-center py-8 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <p className="text-gray-600 dark:text-gray-400 mb-4">
+                          You haven't bookmarked any posts yet.
+                        </p>
+                        <Link
+                          to="/"
+                          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                        >
+                          Browse Posts
+                        </Link>
+                      </div>
+                    ) : (
+                      <div className="space-y-4">
+                        {bookmarks.map((bookmark) => (
+                          <div
+                            key={bookmark._id}
+                            className="flex flex-col md:flex-row bg-white dark:bg-gray-700 rounded-lg shadow overflow-hidden"
+                          >
+                            {bookmark.image && (
+                              <div className="md:w-1/4">
+                                <img
+                                  src={bookmark.image}
+                                  alt={bookmark.title}
+                                  className="w-full h-40 object-cover"
+                                />
+                              </div>
+                            )}
+                            <div className={`p-4 flex-1 ${!bookmark.image ? 'md:w-full' : 'md:w-3/4'}`}>
+                              <div className="flex items-center justify-between mb-2">
+                                <h3 className="md:text-lg text-sm font-bold text-gray-900 dark:text-white">
+                                  {bookmark.title}
+                                </h3>
+                                <div className="flex flex-col items-center">
+                                  <img
+                                    src={bookmark.author.avatar || 'https://via.placeholder.com/32'}
+                                    alt={bookmark.author.name}
+                                    className="w-6 h-6 rounded-full mr-2"
+                                  />
+                                  <span className="md:text-sm text-xs text-gray-600 dark:text-gray-300">
+                                    {bookmark.author.name}
+                                  </span>
+                                </div>
+                              </div>
+                              <p className="text-gray-600 dark:text-gray- 300 mb-3 line-clamp-2">
+                                {bookmark.content.replace(/<[^>]*>?/gm, '')}
+                              </p>
+                              <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                                <Clock className="w-4 h-4 mr-1" />
+                                {new Date(bookmark.createdAt).toLocaleDateString()}
+                                <span className="mx-2">•</span>
+                                <span>{bookmark.likes.length} likes</span>
+                                <span className="mx-2">•</span>
+                                <span>{bookmark.comments.length} comments</span>
+                              </div>
+                              <div className="flex space-x-2">
+                                <Link
+                                  to={`/posts/${bookmark._id}`}
+                                  className="flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                                >
+                                  <Eye className="w-4 h-4 mr-1" />
+                                  View
+                                </Link>
+                                <button
+                                  onClick={() => handleBookmark(bookmark._id)}
+                                  className="flex items-center text-yellow-600 hover:text-yellow-700 dark:text-yellow-400 dark:hover:text-yellow-300"
+                                >
+                                  <Bookmark className="w-4 h-4 mr-1" />
+                                  Remove Bookmark
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
+            )}
         </div>
       </div>
     </div>
