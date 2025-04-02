@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { User, Users, Clock, ArrowLeft, UserPlus, UserMinus } from 'lucide-react';
+import UserProfileSkeleton from '../components/UserProfileSkeleton'
 
 interface UserData {
   _id: string;
@@ -98,9 +99,7 @@ const UserProfile = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
+      <UserProfileSkeleton/>
     );
   }
 

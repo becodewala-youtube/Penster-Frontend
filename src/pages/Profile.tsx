@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import ProfileSkeleton from '../components/ProfileSkeleton';
 import { 
   PenSquare, 
   Trash2, 
@@ -326,9 +327,7 @@ const Profile = () => {
 
   if (loading && activeTab === 'profile') {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
+     <ProfileSkeleton/>
     );
   }
 
