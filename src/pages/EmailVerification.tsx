@@ -42,7 +42,7 @@ const EmailVerification = () => {
 
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:5000/api/auth/verify-email',
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/verify-email`,
         { code: verificationCode },
         {
           headers: { Authorization: `Bearer ${token}` }
@@ -67,7 +67,7 @@ const EmailVerification = () => {
 
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://localhost:5000/api/auth/resend-verification',
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/resend-verification`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }
