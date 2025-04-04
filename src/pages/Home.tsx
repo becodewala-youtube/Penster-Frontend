@@ -341,13 +341,13 @@ const Home = () => {
                     className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
                   >
                     <img
-                      src={post.author.avatar || 'https://via.placeholder.com/40'}
-                      alt={post.author.name}
+                      src={post?.author?.avatar || 'https://via.placeholder.com/40'}
+                      alt={post?.author?.name}
                       className="w-10 h-10 rounded-full border-2 border-blue-100 hover:border-blue-300 transition-colors"
                     />
                     <div className="text-left">
                       <p className="text-sm font-medium text-gray-900 dark:text-white hover:text-blue-600 transition-colors">
-                        {post.author.name}
+                        {post?.author?.name}
                       </p>
                       <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                         <Clock className="w-4 h-4 mr-1" />
@@ -396,7 +396,7 @@ const Home = () => {
                 
                 {post.tags && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1 mt-3">
-                    {post.tags.slice(0, 3).map((tag, index) => (
+                    {post?.tags?.slice(0, 3).map((tag, index) => (
                       <span
                         key={index}
                         className="text-xs text-gray-500 dark:text-gray-400"
