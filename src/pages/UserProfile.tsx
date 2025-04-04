@@ -130,13 +130,13 @@ const UserProfile = () => {
               <img
                 src={user.avatar || 'https://via.placeholder.com/100'}
                 alt={user.name}
-                className="w-20 h-20 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
+                className="md:w-20 md:h-20 w-12 h-12 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
               />
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h1 className="md:text-2xl font-bold text-gray-900 dark:text-white">
                   {user.name}
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400 mt-1">
+                <p className="text-gray-600 md:text-sm text-xs dark:text-gray-400 mt-1">
                   {user.bio || 'No bio available'}
                 </p>
               </div>
@@ -145,7 +145,7 @@ const UserProfile = () => {
             {currentUser && currentUser._id !== userId && (
               <button
                 onClick={handleFollow}
-                className={`inline-flex items-center px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`inline-flex items-center md:px-4 px-2 py-2 md:py-2 rounded-lg font-medium transition-colors ${
                   isFollowing
                     ? 'bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
                     : 'bg-blue-600 text-white hover:bg-blue-700'
@@ -153,13 +153,13 @@ const UserProfile = () => {
               >
                 {isFollowing ? (
                   <>
-                    <UserMinus className="w-4 h-4 mr-2" />
-                    Unfollow
+                    <UserMinus className="md:w-4 w-2 h-2 md:h-4 mr-2" />
+                   <span className='text-xs md:text-lg'> Unfollow</span>
                   </>
                 ) : (
                   <>
                     <UserPlus className="w-4 h-4 mr-2" />
-                    Follow
+                    <span className='text-xs md:text-lg'> Follow</span>
                   </>
                 )}
               </button>
@@ -169,13 +169,13 @@ const UserProfile = () => {
           {/* Stats */}
           <div className="flex space-x-6 mb-6">
             <div className="text-center">
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">
+              <p className="md:text-2xl font-bold text-gray-900 dark:text-white">
                 {followers.length}
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Followers</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-gray-900 dark:text-white">
+              <p className="md:text-2xl font-bold text-gray-900 dark:text-white">
                 {following.length}
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400">Following</p>

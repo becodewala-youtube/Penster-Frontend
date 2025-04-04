@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ThumbsUp, MessageSquare, Share2, Bookmark, Clock, Edit, Trash2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '../context/AuthContext';
-import Skeleton from '../components/Skeleton';
+import PostDetailsSkeleton from '../components/PostDetailsSkeleton'
 
 interface Comment {
   _id: string;
@@ -222,7 +222,7 @@ const PostDetail = () => {
 
   if (loading) {
     return (
-      <Skeleton/>
+   <PostDetailsSkeleton/>
     );
   }
 
@@ -237,13 +237,13 @@ const PostDetail = () => {
   const isAuthor = user && post.author._id === user._id;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto md:px-4 py-8">
       <article className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
         {post.image && (
           <img
             src={post.image}
             alt={post.title}
-            className="w-full h-64 object-cover"
+            className="w-full md:h-full h-64 object-cover"
           />
         )}
 
@@ -253,7 +253,7 @@ const PostDetail = () => {
               <img
                 src={post.author.avatar || 'https://via.placeholder.com/40'}
                 alt={post.author.name}
-                className="w-12 h-12 rounded-full"
+                className="md:w-12 md:h-12 w-8 h-8 rounded-full"
               />
               <div>
                 <p className="font-medium text-gray-900 dark:text-white">
@@ -265,12 +265,12 @@ const PostDetail = () => {
                 </div>
               </div>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex md:space-x-2">
               {isAuthor && (
                 <>
                   <button
                     onClick={handleEditPost}
-                    className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-blue-600"
+                    className="md:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-blue-600"
                     title="Edit post"
                   >
                     <Edit className="w-5 h-5" />
@@ -371,7 +371,7 @@ const PostDetail = () => {
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white mb-4">
             {post.title}
           </h1>
 
@@ -421,20 +421,20 @@ const PostDetail = () => {
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center space-x-2">
                       <img
-                        src={comment.user.avatar || 'https://via.placeholder.com/32'}
-                        alt={comment.user.name}
+                        src={comment?.user?.avatar || 'https://via.placeholder.com/32'}
+                        alt={comment?.user?.name}
                         className="w-8 h-8 rounded-full"
                       />
                       <div>
                         <p className="font-medium text-gray-900 dark:text-white">
-                          {comment.user.name}
+                          {comment?.user?.name}
                         </p>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
                           {new Date(comment.createdAt).toLocaleDateString()}
                         </p>
                       </div>
                     </div>
-                    {user && comment.user._id === user._id && (
+                    {user && comment?.user?._id === user._id && (
                       <button
                         onClick={() => handleDeleteComment(comment._id)}
                         className="text-red-500 hover:text-red-700"
@@ -456,4 +456,3 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
-

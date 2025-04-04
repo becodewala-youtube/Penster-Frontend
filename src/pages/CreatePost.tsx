@@ -154,7 +154,7 @@ const CreatePost = () => {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-2">
             <PenSquare className="w-6 h-6 text-blue-600" />
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Create New Post</h1>
+            <h1 className="md:text-2xl  font-bold text-gray-900 dark:text-white">Create New Post</h1>
           </div>
           
           <button

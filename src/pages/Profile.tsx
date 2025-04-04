@@ -314,6 +314,7 @@ const Profile = () => {
       setError(error.response?.data?.message || 'Failed to upload image');
     }
   };
+
   const filteredFollowers = followers.filter(follower => 
     follower.name.toLowerCase().includes(followerSearch.toLowerCase()) ||
     (follower.bio && follower.bio.toLowerCase().includes(followerSearch.toLowerCase()))
