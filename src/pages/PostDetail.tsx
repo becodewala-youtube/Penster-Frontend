@@ -243,7 +243,7 @@ const PostDetail = () => {
           <img
             src={post.image}
             alt={post.title}
-            className="w-full md:h-full h-64 object-cover"
+            className="w-full md:h-72 h-64 object-cover"
           />
         )}
 
