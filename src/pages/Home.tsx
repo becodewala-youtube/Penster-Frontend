@@ -330,6 +330,8 @@ const Home = () => {
                   <img
                     src={post.image}
                     alt={post.title}
+                    loading='lazy'
+                    
                     className="w-full h-48 object-cover hover:opacity-90 transition-opacity"
                   />
                 </Link>
