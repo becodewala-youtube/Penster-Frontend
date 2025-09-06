@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-import { User, Users, Clock, ArrowLeft, UserPlus, UserMinus } from 'lucide-react';
+import { Users, ArrowLeft, UserPlus, UserMinus } from 'lucide-react';
 import UserProfileSkeleton from '../components/UserProfileSkeleton'
 
 interface UserData {

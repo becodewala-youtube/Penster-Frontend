@@ -1,5 +1,3 @@
-import React from "react";
-
 const SkeletonBlogPost = () => {
   return (
     <div className="max-w-2xl mx-auto p-6 bg-gray-50 dark:bg-gray-900 rounded-lg shadow-lg animate-pulse border border-gray-300 dark:border-gray-700 mt-12">

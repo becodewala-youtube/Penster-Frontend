@@ -8,15 +8,12 @@ import {
   Trash2, 
   Eye, 
   Clock, 
-  ThumbsUp, 
-  MessageSquare, 
   Bookmark, 
   Edit, 
   Upload, 
   Search, 
   UserMinus, 
   UserX,
-  User,
   Users
 } from 'lucide-react';
 
@@ -233,20 +230,20 @@ const Profile = () => {
   };
 
   const handleRemoveFollower = async (followerId: string) => {
-    try {
-      const token = localStorage.getItem('token');
-      await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users/${followerId}/follow`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      );
-      fetchFollowers();
-    } catch (error: any) {
-      console.error('Error removing follower:', error);
-    }
-  };
+  try {
+    const token = localStorage.getItem('token');
+    await axios.delete(
+      `${import.meta.env.VITE_BACKEND_URL}/api/users/${followerId}/remove-follower`,
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    );
+    fetchFollowers();
+  } catch (error: any) {
+    console.error('Error removing follower:', error);
+  }
+};
+
 
   const handleUnfollow = async (userId: string) => {
     try {

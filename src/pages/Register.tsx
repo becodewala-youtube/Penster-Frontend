@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { User, Mail, Lock, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Register = () => {
-  const navigate = useNavigate();
   const { register, error: authError, clearError } = useAuth();
   const [formData, setFormData] = useState({
     name: '',

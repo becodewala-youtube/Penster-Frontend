@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { PenSquare, Save, Image, Tag, FileText, Layout, Upload, X } from 'lucide-react';
+import { PenSquare, Save, Image, Tag, FileText, Layout, X } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 const CreatePost = () => {

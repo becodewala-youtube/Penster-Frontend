@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { PenSquare, Save, Eye, Trash2, Upload, X, Image } from 'lucide-react';
+import { PenSquare, Save, Eye, Trash2, X, Image } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 const EditPost = () => {

@@ -225,28 +225,6 @@ const Home = () => {
           Create Post
         </button>
       </div>
-
-      {/* <div className="md:hidden mb-6">
-        <form onSubmit={handleSearchSubmit} className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-gray-400" />
-          </div>
-          <input
-            type="text"
-            className="pl-10 block w-full rounded-md border border-gray-300 bg-gray-100 dark:bg-gray-700 focus:ring-blue-500 focus:border-blue-500 dark:text-white sm:text-sm py-2"
-            placeholder="Search posts..."
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-          <button
-            type="submit"
-            className="absolute inset-y-0 right-0 px-3 flex items-center bg-blue-600 text-white rounded-r-md"
-          >
-            Search
-          </button>
-        </form>
-      </div> */}
-
       {error && (
         <div className="text-center py-4 mb-6">
           <p className="text-red-600">{error}</p>

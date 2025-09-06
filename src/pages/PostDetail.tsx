@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ThumbsUp, MessageSquare, Share2, Bookmark, Clock, Edit, Trash2 } from 'lucide-react';
+import { ThumbsUp, Share2, Bookmark, Clock, Edit, Trash2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '../context/AuthContext';
 import PostDetailsSkeleton from '../components/PostDetailsSkeleton'
@@ -392,7 +392,7 @@ const PostDetail = () => {
 
           <div className="border-t dark:border-gray-700 pt-6">
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-              Comments ({post.comments.length})
+              Comments ({post?.comments?.length})
             </h3>
 
             <form onSubmit={handleComment} className="mb-6">

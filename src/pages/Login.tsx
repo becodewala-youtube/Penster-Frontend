@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Mail, Lock, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
-  const navigate = useNavigate();
+  
   const { login, error: authError, clearError } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
